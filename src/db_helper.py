@@ -24,6 +24,7 @@ def create_sql_db_chain(llm, db_object, query:str):
     db_chain = SQLDatabaseChain.from_llm(
         llm,
         db_object,
-        verbose=True, prompt=few_shots_prompt
+        verbose=True,
+        prompt=few_shots_prompt
     )
     return db_chain.run(query)

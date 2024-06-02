@@ -6,7 +6,7 @@ from langchain_community.llms import GooglePalm
 load_dotenv()
 
 
-def sample():
+def run_db_chain(query:str):
     """
     note: after apply few shots learning, now llm can perform correctly some query that before it cant
 
@@ -19,8 +19,8 @@ def sample():
     llm = GooglePalm(temperature=0.2)
     db_url = os.getenv("DB_URL")
     db_object = db_helper.create_sql_db_obj(db_url)
-    print(db_helper.create_sql_db_chain(
+    return db_helper.create_sql_db_chain(
         llm,
         db_object,
-        "How many white color Levi's t-shirt i have?"
-    ))
+        query
+    )
